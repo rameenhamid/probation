@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head content -->
+</head>
+<body>
+    <div class="container">
+        <% if (user) { %>
+            <h1>User Details</h1>
+            <p><strong>Name:</strong> <%= user.name %></p>
+            <p><strong>Number:</strong> <%= user.mobile %></p>
+            <p><strong>Address:</strong> <%= user.address %></p>
+            <p><strong>Email:</strong> <%= user.email %></p>
+            <p><strong>Password:</strong> <%= user.password %></p>
+            <div>
+                <a href="/users/<%= user.id %>/edit">Edit</a>
+                <form action="/users/<%= user.id %>/delete" method="post">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        <% } else { %>
+            <p>User not found.</p>
+        <% } %>
+    </div>
+</body>
+</html>
