@@ -1,0 +1,27 @@
+{
+  "name": "probation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rameenhamid/probation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rameenhamid/probation/issues"
+  },
+  "homepage": "https://github.com/rameenhamid/probation#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mysql2": "^3.0.0",
+    "nodemon": "^3.0.1",
+    "sequelize": "^6.34.0"
+  }
+}
