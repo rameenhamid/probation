@@ -92,6 +92,8 @@ const UserController = {
     try {
       const user = await User.findOne({ where: { email, password } });
       if (user) {
+        req.user = user.id;
+        console.log(req.user.id);
         res.redirect('/users');
       } else {
         res.render('login', { error: 'Invalid email or password' });
