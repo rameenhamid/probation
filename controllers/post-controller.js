@@ -7,19 +7,22 @@ const PostController = {
   },
 
   createPost: async (req, res) => {
-    try {
-      const { title, content, userId } = req.body;
-      const post = await Post.create({ title, content, userId });
-      res.redirect(`/users/${userId}/posts/${post.id}`);
-    } catch (error) {
-      res.status(500).json({ error: 'Failed to create post' });
-    }
+      try {
+        const { title, content } = req.body;
+        const userId = req.params.userId;
+        const post = await Post.create({ title, content, userId });
+        const fetchedPost = await Post.findByPk(post.id);
+        res.render('displayPost', { post: fetchedPost });
+      } catch (error) {
+        res.status(500).json({ error: 'Failed to create post' });
+      }
   },
 
   displayAllPosts: async (req, res) => {
     try {
       const userId = req.params.userId;
       const posts = await Post.findAll({ where: { userId: userId } });
+      //res.json(posts);
       res.render('allPosts', { userId: userId, posts: posts });
     } catch (error) {
       res.status(500).json({ error: 'Failed to retrieve posts' });
@@ -50,8 +53,10 @@ const PostController = {
     try {
       const { title, content } = req.body;
       const postId = req.params.postId;
+      const userId = req.params.userId;
       await Post.update({ title, content }, { where: { id: postId } });
-      res.redirect(`/users/${req.params.userId}/posts/${postId}`);
+      const fetchedPost = await Post.findByPk(postId);
+      res.render('displayPost', { post: fetchedPost });
     } catch (error) {
       res.status(500).json({ error: 'Failed to update post' });
     }
@@ -61,11 +66,12 @@ const PostController = {
     try {
       const postId = req.params.postId;
       await Post.destroy({ where: { id: postId } });
-      res.redirect(`/users/${req.params.userId}/posts`);
+      res.redirect(`/posts/users/${req.params.userId}/posts`);
     } catch (error) {
       res.status(500).json({ error: 'Failed to delete post' });
     }
   }
+
 };
 
 module.exports = PostController;

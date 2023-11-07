@@ -9,7 +9,7 @@
         <ul>
             <% posts.forEach(post => { %>
                 <li>
-                    <a href="/users/<%= post.userId %>/posts/<%= post.id %>"><%= post.title %></a>
+                    <a href="/posts/users/<%= post.userId %>/posts/<%= post.id %>"><%= post.title %></a>
                 </li>
             <% }); %>
         </ul>

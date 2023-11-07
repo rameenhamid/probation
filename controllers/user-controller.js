@@ -65,6 +65,7 @@ const UserController = {
       const users = await User.findAll({
         attributes: ['id', 'name', 'mobile', 'address', 'email', 'password'] 
       });
+      //res.json(users)
       res.render('allusers', { users });
     } catch (error) {
       res.status(500).json({ error: 'Failed to retrieve users' });
