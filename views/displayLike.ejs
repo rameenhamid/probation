@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head content -->
+</head>
+<body>
+    <div class="container">
+        <% if (like && like.id) { %>
+            <h1>Post Details</h1>
+            <p><strong>Post ID:</strong> <%= like.postId %></p>
+            <p><strong>User ID:</strong> <%= like.userId %></p>
+            <p><strong>Reaction Type: </strong> <%= like.reaction %></p>
+            
+            <!-- Edit button form -->
+            <form action="/likes/users/<%= like.userId %>/posts/<%= like.postId %>/like/<%= like.id %>/edit" method="post">
+                <button type="submit">Edit Reaction</button>
+            </form>
+
+            <!-- Undo button form -->
+            <form action="/likes/users/<%= like.userId %>/posts/<%= like.postId %>/like/<%= like.id %>/undo" method="post">
+                <button type="submit">Undo Reaction</button>
+            </form>
+        <% } else { %>
+            <p>Reaction Deleted</p>
+        <% } %>
+    </div>
+</body>
+</html>

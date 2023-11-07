@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head content -->
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Like</h1>
+        <form action="/likes/users/<%= like.userId %>/posts/<%= like.postId %>/like/<%= like.id %>/update" method="post">
+            <select name="reactionType">
+                <option value="like" <% if (like.reaction === 'like') { %> selected <% } %>>Like</option>
+                <option value="happy" <% if (like.reaction === 'happy') { %> selected <% } %>>Happy</option>
+                <option value="sad" <% if (like.reaction === 'sad') { %> selected <% } %>>Sad</option>
+                <option value="angry" <% if (like.reaction === 'angry') { %> selected <% } %>>Angry</option>
+            </select>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</body>
+</html>

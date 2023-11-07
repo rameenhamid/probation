@@ -10,6 +10,15 @@
             <% posts.forEach(post => { %>
                 <li>
                     <a href="/posts/users/<%= post.userId %>/posts/<%= post.id %>"><%= post.title %></a>
+                    <form action="/likes/users/<%= post.userId %>/posts/<%= post.id %>/like/createLike" method="post">
+                        <select name="reactionType">
+                            <option value="like">Like</option>
+                            <option value="happy">Happy</option>
+                            <option value="sad">Sad</option>
+                            <option value="angry">Angry</option>
+                        </select>
+                        <button type="submit">React</button>
+                    </form>
                 </li>
             <% }); %>
         </ul>
