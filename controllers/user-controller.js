@@ -10,7 +10,7 @@ const UserController = {
   createUser: async (req, res) => {
     try {
       const user = await User.create(req.body);
-      res.redirect(`/users/${user.id}`);
+      res.render('display', { user, loggedInUserId: user.id }); 
     } catch (error) {
       res.status(500).json({ error: 'Failed to create user' });
     }
