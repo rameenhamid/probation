@@ -87,15 +87,20 @@ const LikeController = {
     },
 
   deleteLike: async (req, res) => {
-      try {
-        const likeId = req.params.likeId;
-        await Like.destroy({ where: { id: likeId } });
-        const fetchedLike = await Like.findByPk(likeId);
-        res.render('displayLike', { like: fetchedLike });
-      } catch (error) {
-        res.status(500).json({ error: 'Failed to delete like' });
-      }
-    }
-  };
+    try {
+      const likeId = req.params.likeId;
+      await Like.destroy({ where: { id: likeId } });
+      const posts = await Post.findAll({ where: { userId: req.params.userId } }); 
+      const like = await Like.findAll({ where: { userId: req.params.userId } });
+      const userId = req.params.userId; // Make sure userId is defined
+
+      // Pass the likes along with the posts and userId
+      res.render('allPosts', { posts, userId});
+  } catch (error) {
+      res.status(500).json({ error: 'Failed to delete like' });
+  }
+}
+
+};
 
 module.exports = LikeController;

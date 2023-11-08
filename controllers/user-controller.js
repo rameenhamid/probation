@@ -54,7 +54,7 @@ const UserController = {
       const user = await User.findByPk(req.params.id, {
         attributes: ['id', 'name', 'mobile', 'address', 'email', 'password'] 
       });
-      res.render('displayuser', { user });
+      res.render('display', { user });
     } catch (error) {
       res.status(500).json({ error: 'Failed to retrieve user' });
     }
@@ -73,14 +73,14 @@ const UserController = {
   },
 
   signup: async (req, res) => {
-    const { email, password } = req.body;
-  
+    // Your signup logic here
     try {
-      const user = await User.findOne({ where: { email, password } });
-      if (user) {
-        res.redirect('/users/create');
+      // Assuming you have some logic to create a new user
+      const newUser = await User.create(req.body); // Assuming req.body contains the necessary user information
+      if (newUser) {
+        res.redirect('/users'); // Redirect to the /users page after successful signup
       } else {
-        res.render('signup');
+        res.render('signup', { error: 'Failed to create user' });
       }
     } catch (error) {
       res.status(500).json({ error: 'Failed to create user' });
@@ -93,7 +93,7 @@ const UserController = {
       const user = await User.findOne({ where: { email, password } });
       if (user) {
         const users = await User.findAll();
-        res.render('allusers', { users, loggedInUserId: user.id }); 
+        res.render('display', { user, loggedInUserId: user.id }); 
         res.render('login', { error: 'Invalid email or password' });
       }
     } catch (error) {
