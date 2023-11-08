@@ -89,14 +89,11 @@ const UserController = {
   
   login: async (req, res) => {
     const { email, password } = req.body;
-  
     try {
       const user = await User.findOne({ where: { email, password } });
       if (user) {
-        req.user = user.id;
-        console.log(req.user.id);
-        res.redirect('/users');
-      } else {
+        const users = await User.findAll();
+        res.render('allusers', { users, loggedInUserId: user.id }); 
         res.render('login', { error: 'Invalid email or password' });
       }
     } catch (error) {
@@ -104,7 +101,6 @@ const UserController = {
     }
   },
   
-
 };
 
 module.exports = UserController;
