@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head content -->
+</head>
+<body>
+    <div class="container">
+        <h1>Create Post</h1>
+        <form action="/posts/users/<%= userId %>/posts/create" method="post">
+            <div>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+            </div>
+            <div>
+                <label for="content">Content</label>
+                <textarea id="content" name="content"></textarea>
+            </div>
+            <button type="submit">Create Post</button>
+        </form>
+    </div>
+</body>
+</html>

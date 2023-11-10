@@ -65,6 +65,7 @@ const UserController = {
       const users = await User.findAll({
         attributes: ['id', 'name', 'mobile', 'address', 'email', 'password'] 
       });
+      //res.json(users)
       res.render('allusers', { users });
     } catch (error) {
       res.status(500).json({ error: 'Failed to retrieve users' });
@@ -92,6 +93,8 @@ const UserController = {
     try {
       const user = await User.findOne({ where: { email, password } });
       if (user) {
+        req.user = user.id;
+        console.log(req.user.id);
         res.redirect('/users');
       } else {
         res.render('login', { error: 'Invalid email or password' });
