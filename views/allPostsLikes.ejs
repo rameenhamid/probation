@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- head content -->
+</head>
+<body>
+    <div class="container">
+        <h1>All Posts</h1>
+        <ul>
+            <% posts.forEach(post => { %>
+                <li>
+                    <a href="/posts/users/<%= post.userId %>/posts/<%= post.id %>"><%= post.title %></a>
+                    <% likes.forEach(like => { %>
+                        <% if (post.id === like.postid) { %>
+                            <div>
+                                <p><strong>Reaction:</strong> <%= like.reaction %></p>
+                                <form action="/likes/users/<%= post.userId %>/posts/<%= post.id %>/like/<%= like.id %>/edit" method="post">
+                                    <button type="submit">Edit</button>
+                                </form>
+                                <form action="/likes/users/<%= post.userId %>/posts/<%= post.id %>/like/<%= like.id %>/undo" method="post">
+                                    <button type="submit">Undo</button>
+                                </form>
+                            </div>
+                        <% } %>
+                    <% }); %>
+                </li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>

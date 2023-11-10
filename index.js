@@ -4,6 +4,7 @@ const userRoutes = require('./routes/user-routes');
 const { sequelize, User } = require('./models'); // Import the User model
 const authRoutes = require('./routes/authRoutes');
 const postRoutes = require('./routes/post-routes');
+const likeRoutes = require('./routes/like-routes');
 
 
 const app = express();
@@ -24,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', userRoutes);
 
 app.use('/posts', postRoutes);
+
+app.use('/likes',likeRoutes);
 
 app.use('/', authRoutes);
 

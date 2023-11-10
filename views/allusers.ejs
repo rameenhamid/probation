@@ -10,14 +10,11 @@
             <% users.forEach(user => { %>
                 <li>
                     <a href="/users/<%= user.id %>">
-                        <%= user.name %> | <%= user.email %> | <%= user.password %>
+                        <%= user.name %> | <%= user.email %>
                     </a>
                 </li>
             <% }); %>
         </ul>
-        <a href="/posts/users/<%= users[0].id %>/posts/create" class="btn btn-primary">Create Post</a>
-        <a href="/posts/users/<%= users[0].id %>/posts" class="btn btn-primary"> Display Post</a>
-        <ul>
     </div>
 </body>
 </html>
